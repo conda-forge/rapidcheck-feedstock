@@ -20,6 +20,8 @@ requirements:
     - make  # [unix]
     - {{ compiler('cxx') }}
     - cmake
+   host:
+    - gtest
 
 test:
   commands:
