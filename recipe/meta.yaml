@@ -13,7 +13,7 @@ source:
   sha256: 9a754942f99027c66c0aed14a684cd4a36b28ab232d9079473d427d09af57871
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
@@ -30,7 +30,9 @@ test:
     - test -e ${PREFIX}/share/rapidcheck/cmake/rapidcheckConfig.cmake  # [unix]
     - test -e ${PREFIX}/lib/librapidcheck.so  # [linux]
     - if not exist %LIBRARY_PREFIX%\include\rapidcheck.h (exit 1)  # [win]
-
+    # The import and shared library must be present on Windows
+    - if not exist %LIBRARY_PREFIX%\lib\rapidcheck.lib (exit 1)  # [win]
+    - if not exist %LIBRARY_PREFIX%\bin\rapidcheck.dll (exit 1)  # [win]
 
 
 about:
